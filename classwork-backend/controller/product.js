@@ -1,4 +1,4 @@
-import { protect } from "../Middleware/authMiddleware.js"
+
 import{  product } from "../Model/product.js"
 // create product
 export const createProduct = async(req, res) =>{
@@ -21,6 +21,42 @@ export const createProduct = async(req, res) =>{
         console.error(error)
         res.status(500).json({ success:false,
             message:"server Error", error})
+    }
+}
+
+// update product
+
+export const updateProduct = async (req, res) => {
+    let productId = req.params.id
+    const {name, price, description, image, category
+    } = req.body
+try {
+    let Product = await product.findById(productId)
+        if (!Product) return res.status(404).json
+       ({message:"product Not Found"})
+
+       //Update only provided fields
+       product.name = name || product.name;
+       product.price = price || product.price;
+       product.description = description || product.description;
+       product.image = image || product.image;
+       product.category = category || product.category;
+       await product.save()
+    res.status(200).json({
+        message:"product Successfully updated",
+        product:{
+            id:product._id,
+            name:product.name,
+            price:product.price,
+            description:product.description,
+            image:product.image,
+            category:product.category,
+            
+        }
+    })
+    
+} catch (error) {
+         res.status(500).json({message:error.message})
     }
 }
 
@@ -51,18 +87,19 @@ export const getProductById = async (req, res) =>{
     }
    }
 
-   // delete project 
 
-   //Delete user
+   // delete product 
+
+   
 
 export const deleteProduct = async (req, res) =>{
     const productId = req.params.id
 
     try {
-        const product  = await product.findById(productId)
-        if(!product) return res.status(404).json({
+        const Product  = await product.findById(productId)
+        if(!Product) return res.status(404).json({
             message:"product doesnt exist"})
-            await user.deleteOne()
+            await Product.deleteOne()
     res.status(200).json({message:"product deleted Successfully",})
 
     } catch (error) {

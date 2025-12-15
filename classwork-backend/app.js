@@ -34,6 +34,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import userRoute from './route/user.js';
 import ProductRouter from './route/product.js';
+import cors from "cors";
 
 dotenv.config();
 
@@ -59,3 +60,30 @@ mongoose.connect(process.env.MONGODB_URL)
   .catch((err) => {
     console.log('MongoDB connection failed:', err.message);
   });
+
+  // ENABLE CORS TO CONNECT MY BACKEND
+  const allowedOrigins = [
+  "https://hgsccdigitalskills.com.ng",
+  "https://www.hgsccdigitalskills.com.ng",
+  "http://hgsccdigitalskills.com.ng",
+  "http://www.hgsccdigitalskills.com.ng",
+  "http://localhost:5000",
+  "https://hgsccdigitalskills.vercel.app",
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true);
+       // mobile apps, Postman
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      } else {
+        return callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
