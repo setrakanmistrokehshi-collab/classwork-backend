@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import {mongoose} from "mongoose";
 import userRouter from "./route/user.js";
 import productRouter from "./route/product.js";
+import cors from "cors";
 const server = express();
 server.use(express.json());
 dotenv.config()
@@ -30,24 +31,17 @@ mongoose.connect(process.env.MONGODB_URL)
 });
 
 
-// ✅ 1. Enable CORS before everything else
-// const allowedOrigins = [
-//   "http://localhost:5173",
-//   "https://hgsccdigitalskills.vercel.app",
-// ];
-/*const allowedOrigins = [
-  "https://hgsccdigitalskills.com.ng",
-  "https://www.hgsccdigitalskills.com.ng",
-  "http://hgsccdigitalskills.com.ng",
-  "http://www.hgsccdigitalskills.com.ng",
-  "http://localhost:5173",
+ // 1. Enable CORS before everything else
+ const allowedOrigins = [
+   "http://localhost:5173",
   "https://hgsccdigitalskills.vercel.app",
-];
-
-app.use(
-  cors({
+ ];
+server.use(
+  cors
+  ({
     origin: function (origin, callback) {
-      if (!origin) return callback(null, true); // mobile apps, Postman
+      if (!origin) return callback(null, true);
+       // mobile apps, Postman
       if (allowedOrigins.includes(origin)) {
         return callback(null, true);
       } else {
@@ -58,4 +52,4 @@ app.use(
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
-); */
+); 
