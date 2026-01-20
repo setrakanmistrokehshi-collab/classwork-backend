@@ -66,7 +66,7 @@ mongoose.connect(process.env.MONGODB_URL)
   "http://localhost:5000",
   "https://localhost:5000",
   "https://assign-git-main-setrakanmistrokehshis-projects.vercel.app",
-  "http://assign-git-main-setrakanmistrokehshis-projects.vercel.app", 
+   
 ];
 
 app.use(
