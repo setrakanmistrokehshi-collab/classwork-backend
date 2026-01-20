@@ -64,7 +64,10 @@ mongoose.connect(process.env.MONGODB_URL)
   // ENABLE CORS TO CONNECT MY BACKEND
   const allowedOrigins = [
   "http://localhost:5000",
-  "https://hgsccdigitalskills.vercel.app",
+  "https://localhost:5000",
+  "https://assign-git-main-setrakanmistrokehshis-projects.vercel.app",
+
+  
 ];
 
 app.use(
