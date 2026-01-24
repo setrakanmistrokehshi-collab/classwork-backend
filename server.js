@@ -15,7 +15,7 @@ server.listen(5000, () => {
 });
  
 //   Routes
-server.use("/api/posts", postRouter);
+
 server.use("/api/users", userRouter);
 server.use("/api/products", productRouter);
 
