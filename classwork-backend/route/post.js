@@ -1,5 +1,5 @@
 const express = require('express');
-const authMiddleware = require('../middleware/auth');  // Adjust path
+const authMiddleware = require('../Middleware/authMiddleware.js');  // Adjust path
 const Post = require('../../model/post');
 
 const router = express.Router();
