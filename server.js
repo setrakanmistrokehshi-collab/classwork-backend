@@ -6,6 +6,7 @@ import userRouter from "./route/user.js";
 import productRouter from "./route/product.js";
 import cors from "cors";
 const server = express();
+const postRouter = require('./route/post.js');  // Adjust path
 server.use(express.json());
 dotenv.config()
 
@@ -14,6 +15,7 @@ server.listen(5000, () => {
 });
  
 //   Routes
+server.use("/api/posts", postRouter);
 server.use("/api/users", userRouter);
 server.use("/api/products", productRouter);
 
@@ -34,7 +36,7 @@ mongoose.connect(process.env.MONGODB_URL)
  // 1. Enable CORS before everything else
  const allowedOrigins = [
    "http://localhost:5173",
-  "https://hgsccdigitalskills.vercel.app",
+  "https://classwork-backend-1.onrender.com"
  ];
 server.use(
   cors
