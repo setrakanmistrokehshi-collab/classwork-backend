@@ -30,4 +30,4 @@ router.post('/', authMiddleware, async (req, res) => {
   }
 });
 
-export const post = postrouter;
+export const post = router;
