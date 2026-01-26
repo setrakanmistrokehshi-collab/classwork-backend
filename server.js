@@ -6,7 +6,7 @@ import userRouter from "./route/user.js";
 import productRouter from "./route/product.js";
 import cors from "cors";
 const server = express();
-const postRouter = require('./route/post.js');  // Adjust path
+//const postRouter = require('./route/post.js');  // Adjust path
 server.use(express.json());
 dotenv.config()
 
