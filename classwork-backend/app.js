@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
-import userRoute from './route/user.js';
+import userRouter from './route/user.js';
 import ProductRouter from './route/product.js';
 import cors from "cors";
 
@@ -37,7 +37,7 @@ app.use(
 );
 
 // Routes
-app.use('/api/user', userRoute);
+app.use('/api/user', userRouter);
 app.use('/api/product', ProductRouter);
 
 // Root test route
